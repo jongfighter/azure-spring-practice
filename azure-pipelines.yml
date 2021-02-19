@@ -14,11 +14,11 @@ steps:
       az spring-cloud app create -n gateway -g default-group -s spring-test --is-public true --cpu 1 --memory 1 --instance-count 1
       az spring-cloud app create  -n account-service -g default-group -s spring-test --is-public false --cpu 1 --memory 1 --instance-count 1
       az spring-cloud app create -n auth-service -g default-group -s spring-test --is-public false --cpu 1 --memory 1 --instance-count 1
-      az spring-cloud app deploy -n gateway --jar-path ./gateway/target/gateway.jar
-      az spring-cloud app deploy -n account-service --jar-path ./account-service/target/account-service.jar
-      az spring-cloud app deploy -n auth-service --jar-path ./auth-service/target/auth-service.jar
-      az spring-cloud app update -n gateway --is-public true
-      az spring-cloud app show --name gateway --query properties.url
+      az spring-cloud app deploy -n gateway -g default-group -s spring-test --jar-path gateway.jar
+      az spring-cloud app deploy -n account-service -g default-group -s spring-test --jar-path account-service.jar
+      az spring-cloud app deploy -n auth-service -g default-group -s spring-test --jar-path auth-service.jar
+      az spring-cloud app update -n gateway -g default-group -s spring-test --is-public true
+      az spring-cloud app show --name gateway  -g default-group -s spring-test  --query properties.url
       # deploy other app
 - script: |
     echo Add other tasks to build, test, and deploy your project.
