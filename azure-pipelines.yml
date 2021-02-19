@@ -19,7 +19,7 @@ steps:
     scriptLocation: inlineScript
     inlineScript: |
       az extension add -y --name spring-cloud
-      az spring-cloud app deploy --resource-group default-group --service spring-test --name <app-name> --jar-path ./target/*.jar
+      az spring-cloud app deploy --resource-group default-group --service spring-test --name hellospring --jar-path ./target/piggy-matrics.jar
       # deploy other app
 - script: |
     echo Add other tasks to build, test, and deploy your project.
