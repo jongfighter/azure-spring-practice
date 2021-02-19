@@ -19,6 +19,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
 		<java.version>1.8</java.version>
+		<skipTests>true</skipTests>
 	</properties>
 
 	<dependencyManagement>
@@ -44,5 +45,17 @@
 		<module>notification-service</module>
 		<module>turbine-stream-service</module>
 	</modules>
+	<repositories>
+		<repository>
+			<id>jongfighter</id>
+			<url>https://jongfighter.pkgs.visualstudio.com/_packaging/jongfighter/maven/v1</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 
 </project>
