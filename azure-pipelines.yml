@@ -13,9 +13,9 @@ steps:
       az extension add -y --name spring-cloud
       az configure --defaults group=default-group
       az configure --defaults spring-cloud=spring-test
-      az spring-cloud app create gateway
-      az spring-cloud app create account-service
-      az spring-cloud app create auth-service
+      az spring-cloud app create -n gateway -g default-group --is-public true --cpu 1 --memory 1 --instance-count 1
+      az spring-cloud app create  -n account-service -g default-group --is-public false --cpu 1 --memory 1 --instance-count 1
+      az spring-cloud app create -n auth-service -g  default-group --is-public false --cpu 1 --memory 1 --instance-count 1
       az spring-cloud app deploy -n gateway --jar-path ./gateway/target/gateway.jar
       az spring-cloud app deploy -n account-service --jar-path ./account-service/target/account-service.jar
       az spring-cloud app deploy -n auth-service --jar-path ./auth-service/target/auth-service.jar
