@@ -1,14 +1,15 @@
 pool:
+
   vmImage: ubuntu-18.04
 
 steps:
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
-- task: AzureCLI@1
-  inputs:
-    azureSubscription: 'freetest(7e2121a4-8c0f-4bca-b0a8-567741a28fe6)'
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+    publishJUnitResults: true
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    javaHomeOption: 'JDKVersion'
+    mavenVersionOption: 'Default'
+    mavenAuthenticateFeed: false
+    effectivePomSkip: false
+    sonarQubeRunAnalysis: false
