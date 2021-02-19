@@ -8,15 +8,6 @@ steps:
 - task: AzureCLI@1
   inputs:
     azureSubscription: 'freetest(7e2121a4-8c0f-4bca-b0a8-567741a28fe6)'
-    scriptLocation: inlineScript
-    inlineScript: |
-      az extension add -y --name spring-cloud
-      az spring-cloud app deploy -n gateway -g default-group -s spring-test --jar-path ./gateway/target/gateway.jar
-      az spring-cloud app deploy -n account-service -g default-group -s spring-test --jar-path ./account-service/target/account-service.jar
-      az spring-cloud app deploy -n auth-service -g default-group -s spring-test --jar-path ./auth-service/target/auth-service.jar
-      az spring-cloud app update -n gateway -g default-group -s spring-test --is-public true
-      az spring-cloud app show --name gateway  -g default-group -s spring-test  --query properties.url
-      # deploy other app
 - script: |
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
