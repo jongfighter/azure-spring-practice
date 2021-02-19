@@ -1,11 +1,3 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
-trigger:
-- master
-
 pool:
   vmImage: ubuntu-latest
 
@@ -15,11 +7,15 @@ steps:
     mavenPomFile: 'pom.xml'
 - task: AzureCLI@1
   inputs:
-    azureSubscription: freetest
+    azureSubscription: 'freetest(7e2121a4-8c0f-4bca-b0a8-567741a28fe6)'
     scriptLocation: inlineScript
     inlineScript: |
       az extension add -y --name spring-cloud
-      az spring-cloud app deploy --resource-group default-group --service spring-test --name hellospring --jar-path ./target/piggy-matrics.jar
+      az spring-cloud app deploy -n gateway --jar-path ./gateway/target/gateway.jar
+      az spring-cloud app deploy -n account-service --jar-path ./account-service/target/account-service.jar
+      az spring-cloud app deploy -n auth-service --jar-path ./auth-service/target/auth-service.jar
+      az spring-cloud app update -n gateway --is-public true
+      az spring-cloud app show --name gateway --query properties.url
       # deploy other app
 - script: |
     echo Add other tasks to build, test, and deploy your project.
