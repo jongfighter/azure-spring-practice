@@ -15,7 +15,7 @@ steps:
     mavenPomFile: 'pom.xml'
 - task: AzureCLI@1
   inputs:
-    azureSubscription: 7e2121a4-8c0f-4bca-b0a8-567741a28fe6
+    azureSubscription: free-test
     scriptLocation: inlineScript
     inlineScript: |
       az extension add -y --name spring-cloud
