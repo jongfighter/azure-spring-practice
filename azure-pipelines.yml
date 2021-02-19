@@ -11,9 +11,6 @@ steps:
     scriptLocation: inlineScript
     inlineScript: |
       az extension add -y --name spring-cloud
-      az spring-cloud app create -n gateway -g default-group -s spring-test --is-public true --cpu 1 --memory 1 --instance-count 1
-      az spring-cloud app create  -n account-service -g default-group -s spring-test --is-public false --cpu 1 --memory 1 --instance-count 1
-      az spring-cloud app create -n auth-service -g default-group -s spring-test --is-public false --cpu 1 --memory 1 --instance-count 1
       az spring-cloud app deploy -n gateway -g default-group -s spring-test --jar-path ./target/gateway.jar
       az spring-cloud app deploy -n account-service -g default-group -s spring-test --jar-path ./target/account-service.jar
       az spring-cloud app deploy -n auth-service -g default-group -s spring-test --jar-path ./target/auth-service.jar
